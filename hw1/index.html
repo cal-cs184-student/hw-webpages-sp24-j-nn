@@ -1,7 +1,123 @@
 <html>
-	<head>
-	</head>
-	<body>
-		Homework 1 index.html here
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="px-24 py-12">
+    <p class="text-xl font-bold pb-6">HW1: Rasterizer</p>
+
+    <p class="text-large font-semibold pb-4">
+      Task 1: Basic Triangle Rasterization
+    </p>
+    <p class="text-sm pb-2">
+      The goal of this task was to write code that, given a set of 3 points and
+      a fill color, fills in points that are within the triangle. Our sample
+      area consisted of a simple bounding box where we take the minimum and
+      maximum x and y coordinates and set those as opposite corners.
+    </p>
+    <p class="text-sm pb-2">
+      For each point/sample in the box, we then determined if it was contained
+      in the triangle by performing 3 half plane tests. Each half plane test
+      involved drawing normal vectors to each of the triangle's lines and taking
+      the dot product with the vector between one of the line's endpoints and
+      the point, giving us a positive number if the point is on the same side as
+      the normal vector, 0 if it's on the line, and a negative number if it's on
+      the opposite side. If the signs of each of the half plane tests are all
+      equal (the signs can be negative or positive depending on which endpoints
+      are used and if the points are oriented clockwise or counter-clockwise),
+      it means that the point is in the triangle!
+    </p>
+    <p class="text-sm">
+      Unfortunately no optimizations were added, so our algorithm matches the
+      performance of the naive bounding box rasterization algorithm.
+    </p>
+
+    <div class="flex flex-row justify-center p-6">
+      <div class="flex flex-col justify-center items-center">
+        <img src="images/task1.png" class="h-96" />
+        <p class="text-xs font-italic">
+          Triangles rasterized using our algorithm, notice that since we're only
+          using 1 sample per point, there are some jaggies at the edges of the
+          triangles.
+        </p>
+      </div>
+    </div>
+
+    <p class="text-lg font-semibold pb-4">Task 2: Supersampling</p>
+    <p class="text-sm pb-2">
+      The last figure showed that while our rasterization algorithm draws
+      triangles as we expect, the edges still have a lot of jaggies. We can
+      remedy this by increasing the number of samples per point and averaging
+      the color of all of the subsamples to get a more "accurate" color than the
+      solid color that we were filling in earlier. As an example, if we increase
+      the sampling rate to 4, we divide our pixel into a sqrt(sampling rate) x
+      sqrt(sampling rate) grid of "mini-pixels" and sample those instead of just
+      the center.
+    </p>
+    <p class="text-sm pb-2">
+      To implement this in code, we modified our original rasterization
+      algorithm to account for sampling rate, so instead of just sampling at the
+      center of each pixel within the bounding box, we iterated over each
+      subsample's location and placed it into a resized sample buffer that is
+      sample_rate times bigger than the original and places subsamples for each
+      pixel contiguously.
+    </p>
+    <p class="text-sm pb-2">
+      We then modified the rendering functions to account for our sampling rate
+      as well, so when rendering pixels, instead of pulling from the sample
+      buffer, the rendering function takes the average of the sampling_rate
+      samples corresponding to the pixel. The buffers are also cleared after
+      changing sample rates to prevent any edge artifacts from the previous
+      sample_buffer corresponding to another sampling rate.
+    </p>
+
+    <div class="flex flex-row justify-center p-6">
+      <div class="flex flex-col justify-center items-center">
+        <img src="images/task2_sr1.png" class="h-96" />
+        <p class="text-xs font-italic">sampling rate = 1</p>
+      </div>
+      <div class="flex flex-col justify-center items-center">
+        <img src="images/task2_sr4.png" class="h-96" />
+        <p class="text-xs font-italic">sampling rate = 4</p>
+      </div>
+      <div class="flex flex-col justify-center items-center">
+        <img src="images/task2_sr16.png" class="h-96" />
+        <p class="text-xs font-italic">sampling rate = 16</p>
+      </div>
+    </div>
+
+    <p class="text-lg font-semibold pb-4">Task 3: Transforms</p>
+    <p class="text-sm pb-2">
+      In this task, we implemented the translation and rotation matrices so that
+      we could render an svg containing various shapes transformed to form a
+      figure called Cubeman. We modified the svg to have the Cubeman waving to
+      us by rotating both arms and also rotating the end segment of the raised
+      arm. Hello!
+    </p>
+
+    <div class="flex flex-row justify-center p-6">
+      <div class="flex flex-col justify-center items-center">
+        <img src="images/task3.png" class="h-96" />
+        <p class="text-xs font-italic">Hello Cubeman!</p>
+      </div>
+    </div>
+
+    <p class="text-lg font-semibold pb-4">Task 4: Barycentric Coordinates</p>
+    <p class="text-sm pb-2">
+      Barycentric coordinates are an alternative way of representing points
+      within a triangle where we represent a point as as a weighted sum of the
+      vertices (alpha * A + beta * B + gamma * C, alpha + beta + gamma = 1). If
+      we put a point inside the triangle and draw lines to each of the vertices,
+      the coefficient for each vertex is the ratio of the triangle opposite that
+      vertex to the entire area of the triangle.
+    </p>
+
+    <div class="flex flex-row justify-center p-6">
+      <div class="flex flex-col justify-center items-center">
+        <img src="images/task4.png" class="h-96" />
+        <p class="text-xs font-italic">Hello Cubeman!</p>
+      </div>
+    </div>
+  </body>
 </html>
