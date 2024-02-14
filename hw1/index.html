@@ -113,6 +113,13 @@
       vertex to the entire area of the triangle.
     </p>
 
+	<div class="flex flex-row justify-center p-6">
+		<div class="flex flex-col justify-center items-center">
+		  <img src="images/task4.png" class="h-96" />
+		  <p class="text-xs font-italic">Sample rate: 1</p>
+		</div>
+	  </div>
+
     <p class="text-lg font-semibold pb-4">Task 5: "Pixel sampling" for texture mapping</p>
     <p class="text-sm pb-2">
       Pixel sampling is the process of determining the color of a texture element 
@@ -126,6 +133,37 @@
 	  as the four texels, and then used lerp to calculate the weighted average of the color. It 
 	  produces much smoother colors, but the tradeoff is that it's slightly slower.
     </p>
+
+	<div class="flex flex-row justify-center p-6">
+		<div class="flex flex-col justify-center items-center">
+		  <img src="images/task 5_sr1_nearest.png" class="h-96" />
+		  <p class="text-xs font-italic">Sample rate: 1, nearest sampling</p>
+		</div>
+	  </div>
+
+
+	<div class="flex flex-row justify-center p-6">
+		<div class="flex flex-col justify-center items-center">
+		  <img src="images/task 5_sr1_linear.png" class="h-96" />
+		  <p class="text-xs font-italic">Sample rate: 1, bilinear sampling</p>
+		</div>
+	  </div>
+
+
+	<div class="flex flex-row justify-center p-6">
+	<div class="flex flex-col justify-center items-center">
+		<img src="images/task 5_sr16_nearest.png" class="h-96" />
+		<p class="text-xs font-italic">Sample rate: 16, nearest sampling</p>
+	</div>
+	</div>
+
+
+	<div class="flex flex-row justify-center p-6">
+		<div class="flex flex-col justify-center items-center">
+		  <img src="images/task 5_sr16_linear.png" class="h-96" />
+		  <p class="text-xs font-italic">Sample rate: 16, bilinear sampling</p>
+		</div>
+	  </div>
 
 	<p class="text-sm pb-2">
 		When pressing "P," you can see the difference in the longitudinal and latitudunal lines 
@@ -160,12 +198,38 @@
 		and edges are much more smooth and reduces the appearances of "jaggies". Lastly, level sampling is still pretty fast
 		but consumes the most memory. Though, this tradeoff is because it has the best antialising capabilities as it uses
 		lower-resolution textures for distant or smaller objects, and this improves the quality of the rendering.
-	</p>
-    <div class="flex flex-row justify-center p-6">
-      <div class="flex flex-col justify-center items-center">
-        <img src="images/task4.png" class="h-96" />
-        <p class="text-xs font-italic">Hello Cubeman!</p>
-      </div>
-    </div>
+
+
+		<div class="flex flex-row justify-center p-6">
+			<div class="flex flex-col justify-center items-center">
+			  <img src="images/task6_lvl0_nearest.png" class="h-96" />
+			  <p class="text-xs font-italic">Sample rate: 1, level: 0, nearest sampling</p>
+			</div>
+		  </div>
+	
+	
+		<div class="flex flex-row justify-center p-6">
+		<div class="flex flex-col justify-center items-center">
+			<img src="images/task6_lvl0_bil.png" class="h-96" />
+			<p class="text-xs font-italic">Sample rate: 1, level: 0, bilinear sampling</p>
+		</div>
+		</div>
+	
+	
+		<div class="flex flex-row justify-center p-6">
+			<div class="flex flex-col justify-center items-center">
+			  <img src="images/task6_nearest_bil.png" class="h-96" />
+			  <p class="text-xs font-italic">Sample rate: 1, level: nearest, bilinear sampling</p>
+			</div>
+		  </div>
+	
+	
+		<div class="flex flex-row justify-center p-6">
+		<div class="flex flex-col justify-center items-center">
+			<img src="images/task 6_bil_bil.png" class="h-96" />
+			<p class="text-xs font-italic">Sample rate: 1, level: bilinear, bilinear sampling</p>
+		</div>
+		</div>
+
   </body>
 </html>
