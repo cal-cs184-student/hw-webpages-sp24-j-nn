@@ -2,6 +2,86 @@
 	<head>
 	</head>
 	<body>
-		Homework 2 index.html here
+		<p class="text-large font-semibold pb-4">
+			Task 3: Area-Weighted Vertex Normals
+		  </p>
+		  <p class="text-sm pb-2">
+			To implement the vertex normals, I first took the half-edge and iterated through
+			the neighboring triangles with the vertex. Then, I found the normal of each triangle
+			by calculating the cross product of its edges. I would then sum up the normals of the triangle
+			of all neighboring triangles.
+		  </p>
+	  
+		  <div class="flex flex-row justify-center p-6">
+			<div class="flex flex-col justify-center items-center">
+			  <img src="images/teapot_dae_basic.png" class="h-96" />
+			  <p class="text-xs font-italic">
+				Flat shading: before taking the area-weighted vertex normals.
+			  </p>
+			</div>
+		  </div>
+
+		  <div class="flex flex-row justify-center p-6">
+			<div class="flex flex-col justify-center items-center">
+			  <img src="images/teapot_dae_weighted.png" class="h-96" />
+			  <p class="text-xs font-italic">
+				Phong shading: after taking the area-weighted vertex normals.
+			  </p>
+			</div>
+		  </div>
+
+		  <div class="flex flex-row justify-center p-6">
+			<div class="flex flex-col justify-center items-center">
+			  <img src="images/gray_teapot_unweighted.png" class="h-96" />
+			  <p class="text-xs font-italic">
+				Flat shading: before taking the area-weighted vertex normals.
+			  </p>
+			</div>
+		  </div>
+
+		  <div class="flex flex-row justify-center p-6">
+			<div class="flex flex-col justify-center items-center">
+			  <img src="images/gray_teapot_weighted.png" class="h-96" />
+			  <p class="text-xs font-italic">
+				Phong shading: after taking the area-weighted vertex normals. 
+				Look at how pretty and smooth it is!
+			  </p>
+			</div>
+		  </div>
+
+		  <p class="text-large font-semibold pb-4">
+			Task 4: Edge Flip
+		  </p>
+		  <p class="text-sm pb-2">
+			I first checked if an edge was a boundary, and would just return if it 
+			was. If not, then I would find all the relevant information, to find all
+			the edges (bc, cb, bd, ca, ab, and dc). I noticed that bc and its twin 
+			cb could be used to find the two faces of the left triangle and the right
+			triangle. Following the diagram in lecture, I would see that I would have to
+			find the neighbor and the triangle. I used trial and error, which might not
+			have been the most efficient thing, to realize how to find the vertex of each
+			of the half edges. When I set the neighbors of each edge to flip the edge, I ran 
+			into the error where I was incorrectly setting the vertices, and it was giving me 
+			a black spot where I was trying to flip the edges.
+		  </p>
+
+		  <div class="flex flex-row justify-center p-6">
+			<div class="flex flex-col justify-center items-center">
+			  <img src="images/teapot_dae_basic.png" class="h-96" />
+			  <p class="text-xs font-italic">
+				No flipped edges.
+			  </p>
+			</div>
+		  </div>
+
+		  <div class="flex flex-row justify-center p-6">
+			<div class="flex flex-col justify-center items-center">
+			  <img src="images/teapot_dae_flipped.png" class="h-96" />
+			  <p class="text-xs font-italic">
+				Flat shading: before taking the area-weighted vertex normals.
+			  </p>
+			</div>
+		  </div>
+
 	</body>
 </html>
