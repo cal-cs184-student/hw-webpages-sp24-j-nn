@@ -83,5 +83,79 @@
 			</div>
 		  </div>
 
+		  <p class="text-large font-semibold pb-4">
+			Task 5: Split Edge
+		  </p>
+		  <p class="text-sm pb-2">
+			I first gathered all the necessary information on the vertices (a, b, c, d) 
+			and the respective half edges. Since we're given the edge of mc, I can then
+			find all the neighboring edges by calling next and going in a counter-clockwise
+			order. I also found the vertices, because it's at the end of the half-edge and
+			in the opposite direction that the arrow of the half-edge is pointing towards.
+			
+			Then, I had to create new edges, vertices, and faces for the split edge. I focused
+			on the left side first, separating the faces to be the left top and right top.
+			The only new vertex that I had to create was the middle point, which I calculated the 
+			position of by taking the average of vertex "a" and vertex "c." I created four new edges,
+			as there are four edges in the split. Everytime, I had created a new half-edge, I would have
+			to create its half-edge twin as well. I created a new edge, and then set it to be the edge
+			of the respective half-edge. 
+
+			Lastly, I reset the neighbors of all the edges, where I would set the next edge to be the counter-clockwise 
+			neighbor. The vertex was what it was pointing away from, so the letter which the two half-edges were not
+			sharing. I woudl also set it to its respective twin and face. I repeated this for all the four newly formed 
+			edges.
+
+			Eventful debugging that I experienced was that I kept experiencing a segfault because I confused the 
+			edge e0 as edge bc, but then I realized it was edge mc. This conceptually cleared a lot of things for me.
+			I also had a huge mistake of assigning pointers incorrectly in the clockwise direction, so drawing it out 
+			and following along visually made it easier to debug.
+		  </p>			
+		  <div class="flex flex-row justify-center p-6">
+			<div class="flex flex-col justify-center items-center">
+			  <img src="images/beetle_basic.png" class="h-96" />
+			  <p class="text-xs font-italic">
+				No split edges.
+			  </p>
+			</div>
+		  </div>
+
+		  <div class="flex flex-row justify-center p-6">
+			<div class="flex flex-col justify-center items-center">
+			  <img src="images/beetle_split_edges.png" class="h-96" />
+			  <p class="text-xs font-italic">
+				See how at the bottom right of the hole where the beam should be,
+				there are splits and crosses in a lot of the previously singular
+				edges.
+			  </p>
+			</div>
+		  </div>
+
+		  <div class="flex flex-row justify-center p-6">
+			<div class="flex flex-col justify-center items-center">
+			  <img src="images/beetle_flipped_and_split.png" class="h-96" />
+			  <p class="text-xs font-italic">
+				The row of the edges in the middle were made by doing both
+				splits and flips.
+			  </p>
+			</div>
+
+			<div class="flex flex-row justify-center p-6">
+				<div class="flex flex-col justify-center items-center">
+				  <img src="images/cube_basic.png" class="h-96" />
+				  <p class="text-xs font-italic">
+					Untouched cube.
+				  </p>
+				</div>
+			  </div>
+	
+			  <div class="flex flex-row justify-center p-6">
+				<div class="flex flex-col justify-center items-center">
+				  <img src="images/cube_flip_and_split.png" class="h-96" />
+				  <p class="text-xs font-italic">
+					There's no split on the bottom half, as we split and then flipped the
+					middle edge.
+				  </p>
+				</div>
 	</body>
 </html>
