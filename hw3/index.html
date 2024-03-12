@@ -1,23 +1,32 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Project 3: Pathtracer</title>
-</head>
 <style>
-	.image-container {
-	  display: flex;
-	  justify-content: space-between;
-	  margin-bottom: 20px;
-	}
-	.image-container img {
-	  width: 30%;
-	  height: auto;
-	}
-	.caption {
-	  text-align: center;
-	}
-  </style>
+  body {
+    margin: 20px; /* Add space on the margins */
+  }
+  h1, h2, h3 {
+    text-align: center; /* Center align headings */
+  }
+  .image-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .image-container img {
+    width: 30%;
+    height: auto;
+    display: block; /* Ensure images are displayed as blocks */
+    margin: 0 auto; /* Center align images */
+  }
+  .caption {
+    text-align: center;
+  }
+</style>
+</head>
 <body>
 
 <h1>Project 3: Pathtracer</h1>
@@ -26,36 +35,36 @@
 
 <h3>Explanation of Ray Generation</h3>
 <p> We begin by converting the pixel coordinates to represent the position within the image plane
-	and are normalized to the range [0, 1], which is then transformed into camera coordinates.
-	We use the function ('tan') to calculate horizontal and vertical offsets from the center of the 
-	plane. Then the camera-to-world transformation matrix ('c2w') is applied to the camera coordinates
-	so we can obtain the direction of the ray in world space. The resulting direction vector is normalized,
-	the generated ray is constructed with its origin at the camera position ('pos'), and its direction is set
-	to the computed ray direction. 
+  and are normalized to the range [0, 1], which is then transformed into camera coordinates.
+  We use the function ('tan') to calculate horizontal and vertical offsets from the center of the 
+  plane. Then the camera-to-world transformation matrix ('c2w') is applied to the camera coordinates
+  so we can obtain the direction of the ray in world space. The resulting direction vector is normalized,
+  the generated ray is constructed with its origin at the camera position ('pos'), and its direction is set
+  to the computed ray direction. 
 </p>
 
 <h3>Explanation of Triangle/Sphere Intersection</h3>
 <p> In the functions bool Triangle::has_intersection and bool Sphere::has_intersection, we are determining
-	whether a ray intersects with a triangle using barycentric coordinates. In the class Triangle, it calculates the
-	intersection point and checks if it's within the boundaries, returning true if so. While in Sphere, the 
-	function checks whether a ray interects with a sphere by solving the quadratic equation derived from the
-	ray's equation and the sphere's implicit equation.
+  whether a ray intersects with a triangle using barycentric coordinates. In the class Triangle, it calculates the
+  intersection point and checks if it's within the boundaries, returning true if so. While in Sphere, the 
+  function checks whether a ray interects with a sphere by solving the quadratic equation derived from the
+  ray's equation and the sphere's implicit equation.
 </p>
 
 <div class="image-container">
-	<div>
-	  <img src="images/part1_ray_triangle.png" alt="Image 1">
-	  <div class="caption">Triangle.</div>
-	</div>
-	<div>
-	  <img src="images/part1_ray_sphere.png" alt="Image 2">
-	  <div class="caption">Sphere</div>
-	</div>
-	<div>
-	  <img src="images/part1_ray_coil.png" alt="Image 3">
-	  <div class="caption">Coil</div>
-	</div>
+  <div>
+    <img src="images/part1_ray_triangle.png" alt="Image 1">
+    <div class="caption">Triangle.</div>
   </div>
+  <div>
+    <img src="images/part1_ray_sphere.png" alt="Image 2">
+    <div class="caption">Sphere</div>
+  </div>
+  <div>
+    <img src="images/part1_ray_coil.png" alt="Image 3">
+    <div class="caption">Coil</div>
+  </div>
+</div>
 
 <h2>Part 2: Bounding Volume Hierarchy</h2>
 <!-- Content for Part 2 goes here -->
