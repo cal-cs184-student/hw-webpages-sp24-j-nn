@@ -70,10 +70,53 @@
 </div>
 
 <h2>Part 2: Bounding Volume Hierarchy</h2>
-<!-- Content for Part 2 goes here -->
+<h3>BVH Construction</h3>
+<p>The algorithm recursively builds the BVH tree, and for each step we determine whether to create
+	a leaf or internal node based on number of primitives and the maximum leaf size. If the number of
+	nodes are less than or equal to the maximum leaf size or leaf node created, we enclose all the
+	primitives within a bounding box. Otherwise, the internal node is created by splitting the primitives
+	along the longest axis of their bounding box. The splitting point is chosen by finding the axis with
+	the maximum extent and then sorting the primitives of their centroids along that axis. We keep doing this 
+	until we reach the specified maximum leaf size.
+</p>
+
+<h3>Splitting Point Heuristic</h3>
+<p>We pick the splitting point by balancing the number of primitives in each child node and minimizing
+	the overlap between them. The algo selects the axis with the max extent along the three dimensions (x, y, z)
+	of the bounding box. Then, it sorts the primitives based on their centroids along the axis and splits them
+	into two groups, which makes sure each group has approximtaely equal number of primitives. 
+</p>
+<h3>Normal Shading</h3>
+<p>By shading surfaces based on their surface normal, these images show how light interacts with the geometries 
+	and highlight subtle variations in surface orientation. Normal shading enhances the realism of rendered scenes 
+	thus simulate how light would act with surfaces.
+</p>
+<div class="image-container">
+	<div>
+	  <img src="images/part2_cow.png" alt="Image 1">
+	  <div class="caption">Average speed 5.7874 million rays per second and
+		Averaged 3.322375 intersection tests per ray.
+	  </div>
+	</div>
+	<div>
+	  <img src="images/part2_maxplanck.png" alt="Image 2">
+	  <div class="caption">Average speed 4.1448 million rays per second and 
+		5.195982 intersection tests per ray.</div>
+	</div>
+	<div>
+	  <img src="images/part2_CBlucy.png" alt="Image 3">
+	  <div class="caption">Average speed 4.4432 million rays per second and
+		3.414051 intersection tests per ray.
+	  </div>
+	</div>
+  </div>
+
+<h3>Rendering Experiments</h3>
+
 
 <h2>Part 3: Direct Illumination</h2>
-<!-- Content for Part 3 goes here -->
+<h3>Uniform hemisphere sampling</h3>
+<h3>Light important sampling</h3>
 
 <h2>Part 4: Global Illumination</h2>
 <!-- Content for Part 4 goes here -->
