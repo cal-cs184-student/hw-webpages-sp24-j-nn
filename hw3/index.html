@@ -126,10 +126,10 @@
   
 <h3>Rendering Experiments</h3>
 <p> Thus, with BVH it is much more efficient as we are reducing the naive approach of ray intersection
-	computations. Thus, we are able to generate faster images that are still high-quality. The leftmost number is
-	the without BVH and the rightmost number is with BVH acceleration.
+	computations We are able to generate faster images that are still high-quality. 
 </p>
 
+<p>The leftmost number is implemented without BVH and the rightmost number is with BVH acceleration.</p>
 <div class="image-container">
 	<div>
 	  <img src="images/part2_beast.png" alt="Image 1">
@@ -169,6 +169,56 @@
 	the ray then the radiance contribution is accumulated. This greatly reduces the noise and improves converging compared to uniform hemisphere sampling. Below
 	are images to highlight key differences.
 </p>
+
+<div class="image-container">
+	<div>
+	  <img src="images/part2_beast.png" alt="Image 1">
+	  <div class="caption">19.9849s / 0.0488s, 0.0174 / 3.1435 million rays/sec, and 3172.602997 / 5.110071 intersection tests/ray.
+	  </div>
+	</div>
+	<div>
+	 <img src="images/part2_wall_e.png" alt="Image 2">
+	 <div class="caption"> 90.8991s / 0.0704s, 0.0040 / 3.4442 million rays/sec, 7707.931367 / 10.198931 intersection tests/ray.
+	 </div>
+	</div>
+	<div>
+	  <img src="images/part3_CBbunny_H_64_32.png" alt="Image 3">
+	  <div class="caption"> 46.4878s / 0.0442s, 0.0078 / 3.3153 million rays/sec, 3703.193595 / 5.585757 intersection tests/ray.
+	  </div>
+	</div>
+</div>
+
+<div class="image-container">
+	<div>
+	  <img src="images/part3_dragon.png" alt="Image 1">
+	  <div class="caption"> The dragon.dae file had 64 camera rays per pixels and 32 samples per area of light.
+	  </div>0
+	</div>
+	<div>
+	 <img src="images/part3_wall_e.png" alt="Image 2">
+	 <div class="caption"> The wall-e.dae file also had 64 camera rays per light and 32 samples per area of light
+	 </div>
+	</div>
+</div>
+
+<div class="image-container">
+	<div>
+	  <img src="images/part3_grainy_bunny.png" alt="Image 1">
+	  <div class="caption"> The dragon.dae file had 64 camera rays per pixels and 32 samples per area of light.
+	  </div>0
+	</div>
+	<div>
+	 <img src="images/part3_CBbunny_H_16_8.png" alt="Image 2">
+	 <div class="caption"> The wall-e.dae file also had 64 camera rays per light and 32 samples per area of light
+	 </div>
+	</div>
+	<div>
+		<img src="images/part3_CBbunny_H_64_32.png" alt="Image 1">
+		<div class="caption"> The dragon.dae file had 64 camera rays per pixels and 32 samples per area of light.
+		</div>0
+	  </div>
+</div>
+
 <h2>Part 4: Global Illumination</h2>
 <!-- Content for Part 4 goes here -->
 
