@@ -94,28 +94,29 @@
 	thus simulate how light would act with surfaces.
 </p>
 
-  <div class="image-container">
+
+<h3>Rendering Experiments</h3>
+<p>We can see below that without BVH acceleration, it is much more efficient as we are reducing ray intersection
+	computations. Thus, we are able to generate faster images that are still high-quality.
+</p>
+
+<div class="image-container">
 	<div>
-	  <img src="images/part2_beast.png" alt="Image 1">
-	  <div class="caption">With BVH: 0.0488s, 3.1435 million rays per second, and 5.110071 intersection tests per ray.
-		Without BVH: 19.9849s, 0.0174 million rays per second, and 3172.602997 intersection tests per ray.
-	  </div>
-	</div>
+		<img src="images/part2_beast.png" alt="Image 1">
+		<div class="caption">With BVH: 0.0488s, 3.1435 million rays per second, and 5.110071 intersection tests per ray.
+			Without BVH: 19.9849s, 0.0174 million rays per second, and 3172.602997 intersection tests per ray.
+		</div>
 	<div>
-	  <img src="images/part2_wall_e.png" alt="Image 2">
-	  <div class="caption"> With BVH: 0.0704s, 3.4442 million rays per second, 10.198931 intersection tests per ray.
-		Without BVH: 90.8991s, 0.0040 million rays per second, and 7707.931367 intersection tests per ray.
-	  </div>
-	</div>
+		<img src="images/part2_wall_e.png" alt="Image 2">
+		<div class="caption"> With BVH: 0.0704s, 3.4442 million rays per second, 10.198931 intersection tests per ray.
+		  Without BVH: 90.8991s, 0.0040 million rays per second, and 7707.931367 intersection tests per ray.
+		</div>
 	<div>
 		<img src="images/part2_CBlucy.png" alt="Image 3">
 		<div class="caption"> With BVH: 0.0442s, 3.3153 million rays per second, 5.585757 intersection tests per ray.
 			Without BVH: 46.4878s, 0.0078 million rays per second, 3703.193595 intersection tests per ray.
 		</div>
   </div>
-
-<h3>Rendering Experiments</h3>
-<p> </p>
 
 <h2>Part 3: Direct Illumination</h2>
 
