@@ -36,7 +36,7 @@
     justify-content: center;
   }
   .image-container2 img {
-    width: 150px;
+    width: 60%;
     height: auto;
     margin: 5px;
   }
@@ -106,6 +106,10 @@
 	thus simulate how light would act with surfaces.
 </p>
 
+<p> Below is the visualization of the BVH for 'meshedit/cow.dae' and shows how as we traverse down the root and in each
+	level the BVH roughly halves the scene.
+</p>
+
 <div class="image-container2">
 	<img src="images/part2_render_1.png" alt="Image 1">
 	<img src="images/part2_render_2.png" alt="Image 2">
@@ -121,7 +125,7 @@
 
   
 <h3>Rendering Experiments</h3>
-<p>We can see below that without BVH acceleration, it is much more efficient as we are reducing ray intersection
+<p> Thus, with BVH it is much more efficient as we are reducing the naive approach of ray intersection
 	computations. Thus, we are able to generate faster images that are still high-quality. The leftmost number is
 	the without BVH and the rightmost number is with BVH acceleration.
 </p>
