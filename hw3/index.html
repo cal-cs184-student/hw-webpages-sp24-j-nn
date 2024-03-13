@@ -40,6 +40,16 @@
     height: auto;
     margin: 5px;
   }
+  .image-container3 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .image-container3 img {
+	width: 50%;
+	height: auto;
+	margin: 5px;
+  }
 </style>
 </head>
 <body>
@@ -173,7 +183,7 @@
 <p>Now we can render scenes with less noise and handle lighting from the light sources directly. Shown below are files with 64 camera rays per pixels and 
 	32 samples per area of light.
 </p>
-<div class="image-container2">
+<div class="image-container3">
 	<div>
 	  <img src="images/part3_dragon.png" alt="Image 1">
 	  <div class="caption"> dragon.dae
@@ -188,7 +198,7 @@
 
 <p>Below, we have the different noise levels in soft shadows in CBbunny.dae.</p>
 
-<div class="image-container2">
+<div class="image-container3">
 	<div>
 	  <img src="images/part3_CBbunny_H_1_1.png" alt="Image 1">
 	  <div class="caption"> Samples per area: 1
@@ -211,7 +221,7 @@
 	  </div>
 </div>
 
-<div class="image-container2">
+<div class="image-container3">
 	<div>
 	  <img src="images/part3_CBbunny_1_4.png" alt="Image 1">
 	  <div class="caption"> Light rays: 1
