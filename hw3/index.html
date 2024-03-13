@@ -89,13 +89,26 @@
 	of the bounding box. Then, it sorts the primitives based on their centroids along the axis and splits them
 	into two groups, which makes sure each group has approximtaely equal number of primitives. 
 </p>
+
 <h3>Normal Shading</h3>
 <p>By shading surfaces based on their surface normal, these images show how light interacts with the geometries 
 	and highlight subtle variations in surface orientation. Normal shading enhances the realism of rendered scenes 
 	thus simulate how light would act with surfaces.
 </p>
 
+<div class="image-container">
+	<img src="part2_render1.jpg" alt="Image 1">
+	<img src="part2_render2.jpg" alt="Image 2">
+	<img src="part2_render3.jpg" alt="Image 3">
+	<img src="part2_render4.jpg" alt="Image 4">
 
+	<img src="part2_render5.jpg" alt="Image 5">
+	<img src="part2_render6.jpg" alt="Image 6">
+	<img src="part2_render7.jpg" alt="Image 7">
+	<img src="part2_render8.jpg" alt="Image 8">
+  </div>
+
+  
 <h3>Rendering Experiments</h3>
 <p>We can see below that without BVH acceleration, it is much more efficient as we are reducing ray intersection
 	computations. Thus, we are able to generate faster images that are still high-quality. The leftmost number is
@@ -105,17 +118,17 @@
 <div class="image-container">
 	<div>
 	  <img src="images/part2_beast.png" alt="Image 1">
-	  <div class="caption">19.9849s / 0.0488s, 0.0174 / 3.1435 million rays per second, and 3172.602997 / 5.110071 intersection tests per ray.
+	  <div class="caption">19.9849s / 0.0488s, 0.0174 / 3.1435 million rays/sec, and 3172.602997 / 5.110071 intersection tests/ray.
 	  </div>
 	</div>
 	<div>
 	 <img src="images/part2_wall_e.png" alt="Image 2">
-	 <div class="caption"> 90.8991s / 0.0704s, 0.0040 / 3.4442 million rays per second, 7707.931367 / 10.198931 intersection tests per ray.
+	 <div class="caption"> 90.8991s / 0.0704s, 0.0040 / 3.4442 million rays/sec, 7707.931367 / 10.198931 intersection tests/ray.
 	 </div>
 	</div>
 	<div>
 	  <img src="images/part2_CBlucy.png" alt="Image 3">
-	  <div class="caption"> 46.4878s / 0.0442s, 0.0078 / 3.3153 million rays per second, 3703.193595 / 5.585757 intersection tests per ray.
+	  <div class="caption"> 46.4878s / 0.0442s, 0.0078 / 3.3153 million rays/sec, 3703.193595 / 5.585757 intersection tests/ray.
 	  </div>
 	</div>
 </div>
