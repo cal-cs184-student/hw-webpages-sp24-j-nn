@@ -63,12 +63,20 @@
 
 <h1>Project 3: Pathtracer</h1>
 <h2>Overview</h2>
-<p></p>
+<p>In this project, we implemented the core methods necessary for simulating light to render realistic 3D scenes. I think it's the most interesting
+	project that we've had so far, as we can see how the path of light rays from the virtual camera are simulated by each pixel of the image. We use 
+	various geometric primitives (spheres and triangles), reflection and refraction, and other algorithms (sampling and shading). We implemented the 
+	various computer graphics concepts such as ray-object intersection tests, Monte Carlo integration for global illumination, and importantance sampling.
+	Furthermore, we also learned how to optimize the rendering of extremely detailed images to less than a minute, using bounding volume hierarchies
+	for parallelization. Super cool project! Read more below to see all the cool images and learn about the more gritty details.
+</p>
+
 <h2>Part 1: Ray Generation and Scene Intersection</h2>
 
 <h3>Explanation of Ray Generation</h3>
 <p> We begin by converting the pixel coordinates to represent the position within the image plane
-  and are normalized to the range [0, 1], which is then transformed into camera coordinates.
+  and are normalized to the range [0, 1], which is then transformed into camera coordinates. The camera
+  coordinates are (0,0), which is the bottom left corner of the plane, and (1,1), which is the top right.
   We use the function ('tan') to calculate horizontal and vertical offsets from the center of the 
   plane. Then the camera-to-world transformation matrix ('c2w') is applied to the camera coordinates
   so we can obtain the direction of the ray in world space. The resulting direction vector is normalized,
@@ -76,12 +84,24 @@
   to the computed ray direction. 
 </p>
 
+<div class="image-container">
+	<div>
+		<img src="images/ray_tracing.png" alt="Image 1">
+    <div class="caption">Source: Lecture 9, 8th slide</div>
+	</div>
+</div>
+
 <h3>Explanation of Triangle/Sphere Intersection</h3>
-<p> In the functions bool Triangle::has_intersection and bool Sphere::has_intersection, we are determining
-  whether a ray intersects with a triangle using barycentric coordinates. In the class Triangle, it calculates the
-  intersection point and checks if it's within the boundaries, returning true if so. While in Sphere, the 
-  function checks whether a ray interects with a sphere by solving the quadratic equation derived from the
-  ray's equation and the sphere's implicit equation.
+<p> First we begin by computing the triangle edges (p_1, p_2, p_3) and using the Moller_Trumbore algo we find the two edge vectors e_1 and e_2. 
+	Using these values we find the cross product of the ray direction and the second edge (e_2) to find s_1. We then calculate the dot product 
+	of s_1 and e_1. Using barycentric coordinates, we find the intersection of the ray with the triangle's plane. We have to check if it's within 
+	the range of [0, 1], as explained earlier. If the intersection is within the range of min_t and max_t, which are the ray's valid ranges, then
+	we can return the boolean true. Triangles are important for polygon rendering meshes.
+</p>
+
+<p>It's a little different for sphere intersection, as we need to start at the center and take into account the radius. We calculate the ray's origin
+	to the sphere center (o - r). We use vector algebra and use the quadratic equation to find the intersection of the ray within the sphere. Similarly,
+	if either one of these solutions fall within the valid range (min_t and max_t), then the function also returns true.
 </p>
 
 <div class="image-container">
@@ -206,15 +226,15 @@
 
 <div class="image-container3">
 	<div class="image-item3">
-	  <img src="images/part3_CBbunny_H_1_1.png" alt="Image 1">
-	  <div class="caption3">Samples: 1</div>
+		<img src="images/part3_CBbunny_H_4_2.png" alt="Image 3">
+		<div class="caption3">Samples: 1</div>
 	</div>
 	<div class="image-item3">
-	  <img src="images/part3_CBbunny_H_16_8.png" alt="Image 3">
+	  <img src="images/part3_CBbunny_H_1_1.png" alt="Image 1">
 	  <div class="caption3">Samples: 4</div>
 	</div>
 	<div class="image-item3">
-	  <img src="images/part3_CBbunny_H_4_2.png" alt="Image 2">
+	  <img src="images/part3_CBbunny_H_16_8.png" alt="Image 3">
 	  <div class="caption3">Samples: 16</div>
 	</div>
 	<div class="image-item3">
@@ -225,15 +245,15 @@
   
   <div class="image-container3">
 	<div class="image-item3">
-	  <img src="images/part3_CBbunny_1_4.png" alt="Image 5">
-	  <div class="caption3">Light rays: 1</div>
-	</div>
+		<img src="images/part3_CBbunny_H_4_4.png" alt="Image 5">
+		<div class="caption3">Light rays: 1</div>
+	  </div>
 	<div class="image-item3">
-	  <img src="images/part3_CBbunny_H_16_16.png" alt="Image 7">
+	  <img src="images/part3_CBbunny_1_4.png" alt="Image 5">
 	  <div class="caption3">Light rays: 4</div>
 	</div>
 	<div class="image-item3">
-	  <img src="images/part3_CBbunny_4_4.png" alt="Image 6">
+	  <img src="images/part3_CBbunny_H_16_16.png" alt="Image 7">
 	  <div class="caption3">Light rays: 16</div>
 	</div>
 	<div class="image-item3">
