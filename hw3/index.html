@@ -36,7 +36,7 @@
     justify-content: center;
   }
   .image-container2 img {
-    width: 60%;
+    width: 20%;
     height: auto;
     margin: 5px;
   }
@@ -150,10 +150,25 @@
 
 <h2>Part 3: Direct Illumination</h2>
 <h3>Diffuse BSDF</h3>
-<p></p>
+<p>In DiffuseBSDF::f, the function evaluates the diffuse Lambertian BSDF given the outgoing ('wo') and incident light directions ('wi').
+	It returns the reflectance of these directions. In DiffuseBSDF::sample_f, we are taking the outgoing light direction and providing pointers
+	for incoming directions and using the probability density function ('pdf') and returns the evaluation of BSDF at the outgoing light direction and
+	incoming light.
+</p>
 <h3>Uniform hemisphere sampling</h3>
+<p>The lighting is estimated by sampling uniformly in a hemisphere around the intersection point, and we are setting up a local coordinate system
+	aligned with the surface normal at the point of intersection. We then sample directions in this local coordinate system and convert them to 
+	the wiorld space for ray tracing. For each sample, a ray is cast in the sampled direction and if it intersects with the scene geometry then the 
+	emitted radiance is accumulated based on the BSDF evaluation and the cosine term. However, this sampling method does not capture all the lighting
+	effects accurately. We would need to take it a step further.
+</p>
 <h3>Light important sampling</h3>
-
+<p>Instead of sampling from the light sources directly, we are doing so uniformly in a hemisphere. In PathTracer::estimate_direct_lighting_importance, 
+	we iterate over each ligh source in the scene and sample points on the light surface, taking into account emitted radiance, distance attenuation,
+	and PDF of sampling. For each sampled point on a light source, a shadow ray is cast towards the intersection point and if no intersection occurs along
+	the ray then the radiance contribution is accumulated. This greatly reduces the noise and improves converging compared to uniform hemisphere sampling. Below
+	are images to highlight key differences.
+</p>
 <h2>Part 4: Global Illumination</h2>
 <!-- Content for Part 4 goes here -->
 
