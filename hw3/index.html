@@ -26,30 +26,20 @@
     display: block;
     margin: 0 auto;
   }
-  .caption {
-	margin-top: 10px;
-    text-align: center;
-  }
   .image-container2 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .image-container2 img {
-    width: 20%;
-    height: auto;
-    margin: 5px;
-  }
-  .image-container3 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .image-container3 img {
-	width: 50%;
-	height: auto;
-	margin: 5px;
-  }
+	  display: flex;
+	  flex-wrap: wrap;
+	  justify-content: center;
+	}
+	.image-container2 img {
+		width: 20%;
+		height: auto;
+		margin: 5px;
+	}
+	.caption {
+		margin-top: 10px;
+		text-align: center;
+	}
 </style>
 </head>
 <body>
@@ -183,16 +173,12 @@
 <p>Now we can render scenes with less noise and handle lighting from the light sources directly. Shown below are files with 64 camera rays per pixels and 
 	32 samples per area of light.
 </p>
-<div class="image-container3">
+<div class="image-container">
 	<div>
 	  <img src="images/part3_dragon.png" alt="Image 1">
-	  <div class="caption"> dragon.dae
-	  </div>
 	</div>
 	<div>
 	 <img src="images/part3_wall_e.png" alt="Image 2">
-	 <div class="caption"> wall-e.dae
-	 </div>
 	</div>
 </div>
 
@@ -201,22 +187,22 @@
 <div class="image-container2">
 	<div>
 	  <img src="images/part3_CBbunny_H_1_1.png" alt="Image 1">
-	  <div class="caption"> Samples per area: 1
+	  <div class="caption"> Samples: 1
 	  </div>
 	</div>
 	<div>
 	 <img src="images/part3_CBbunny_H_4_2.png" alt="Image 2">
-	 <div class="caption"> Samples per area: 4
+	 <div class="caption"> Samples: 4
 	 </div>
 	</div>
 	<div>
 	 <img src="images/part3_CBbunny_H_16_8.png" alt="Image 2">
-	 <div class="caption"> Samples per area: 16
+	 <div class="caption"> Samples: 16
 	 </div>
 	</div>
 	<div>
 		<img src="images/part3_CBbunny_H_64_32.png" alt="Image 1">
-		<div class="caption"> Samples per area: 64
+		<div class="caption"> Samples: 64
 		</div>
 	  </div>
 </div>
