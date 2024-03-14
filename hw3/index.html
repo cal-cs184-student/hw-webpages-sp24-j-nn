@@ -121,27 +121,27 @@
 
 <h2>Part 2: Bounding Volume Hierarchy</h2>
 <h3>BVH Construction</h3>
-<p>The algorithm recursively builds the BVH tree, and for each step we determine whether to create
+<p> However, an issue that arises is that it takes too long to render the above images because of the many geometric
+	primitives. Therefore, we recursively built the BVH tree, which is a binary tree that is interestingly built from 
+	the bottom up. We initialize the BVHNode struct at the beginning. At each recursive step we determine whether to create
 	a leaf or internal node based on number of primitives and the maximum leaf size. If the number of
 	nodes are less than or equal to the maximum leaf size or leaf node created, we enclose all the
 	primitives within a bounding box. Otherwise, the internal node is created by splitting the primitives
 	along the longest axis of their bounding box. The splitting point is chosen by finding the axis with
 	the maximum extent and then sorting the primitives of their centroids along that axis. We keep doing this 
-	until we reach the specified maximum leaf size.
+	until we reach the specified maximum leaf size. We divide the left and right subtree so they don't overlap to help
+	with efficiency.
 </p>
 
 <h3>Splitting Point Heuristic</h3>
 <p>We pick the splitting point by balancing the number of primitives in each child node and minimizing
 	the overlap between them. The algo selects the axis with the max extent along the three dimensions (x, y, z)
 	of the bounding box. Then, it sorts the primitives based on their centroids along the axis and splits them
-	into two groups, which makes sure each group has approximtaely equal number of primitives. 
+	into two groups, which makes sure each group has approximtaely equal number of primitives. However, if the pivot 
+	point coincides with the bounding's box min or max, then we'll switch to the next axis to move onwards on finding the correct
+	split point.
 </p>
 
-<h3>Normal Shading</h3>
-<p>By shading surfaces based on their surface normal, these images show how light interacts with the geometries 
-	and highlight subtle variations in surface orientation. Normal shading enhances the realism of rendered scenes 
-	thus simulate how light would act with surfaces.
-</p>
 
 <p> Below is the visualization of the BVH for 'meshedit/cow.dae' and shows how as we traverse down the root and in each
 	level the BVH roughly halves the scene.
@@ -160,6 +160,26 @@
 	<img src="images/part2_render_8.png" alt="Image 8">
   </div>
 
+  <h3>Normal Shading</h3>
+	<p>By shading surfaces based on their surface normal, these images show how light interacts with the geometries 
+		and highlight subtle variations in surface orientation. Normal shading enhances the realism of rendered scenes 
+		thus simulate how light would act with surfaces.
+	</p>
+
+	<div class="image-container">
+		<div>
+			<img src="images/part2_ugly_guy.png" alt="Image 1">
+			<div class="caption">Rendering time: 0.1080s</div>
+		</div>
+		<div>
+			<img src="images/part2_peter.png" alt="Image 2">
+			<div class="caption">Rendering time: 0.0649s</div>
+		</div>
+		<div>
+			<img src="images/part2_building.png" alt="Image 3">
+			<div class="caption">Rendering time: 0.0444s</div>
+		</div>
+		</div>
   
 <h3>Rendering Experiments</h3>
 <p> Thus, with BVH it is much more efficient as we are reducing the naive approach of ray intersection
