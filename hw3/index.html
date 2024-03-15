@@ -74,7 +74,8 @@
 <h2>Part 1: Ray Generation and Scene Intersection</h2>
 
 <h3>Explanation of Ray Generation</h3>
-<p> We begin by converting the pixel coordinates to represent the position within the image plane
+<p> We begin by converting the pixel coordinatesm, which we simply found by subtracting 0.5 by the x and y,
+  to represent the position within the image plane
   and are normalized to the range [0, 1], which is then transformed into camera coordinates. The camera
   coordinates are (0,0), which is the bottom left corner of the plane, and (1,1), which is the top right.
   We use the function ('tan') to calculate horizontal and vertical offsets from the center of the 
@@ -133,6 +134,10 @@
 	with efficiency.
 </p>
 
+<p>We also set the BBox to help with intersection, as it checks if a ray intersects the bounding box. We check if the ray doesn't intersect 
+	with the max of the mins and the mins and the maxes of the boundaries, but if it does then we are able to calculate the intersection of the 
+	intervals.
+</p>
 <h3>Splitting Point Heuristic</h3>
 <p>We pick the splitting point by balancing the number of primitives in each child node and minimizing
 	the overlap between them. The algo selects the axis with the max extent along the three dimensions (x, y, z)
@@ -190,18 +195,22 @@
 <div class="image-container">
 	<div>
 	  <img src="images/part2_beast.png" alt="Image 1">
-	  <div class="caption">19.9849s / 0.0488s, 0.0174 / 3.1435 million rays/sec, and 3172.602997 / 5.110071 intersection tests/ray.
+	  <div class="caption"> Rendering time: 19.9849s / 0.0488s
 	  </div>
+	  <div class="caption"> Rays: 0.0174 / 3.1435 million rays/sec </div>
+	  <div class="caption"> Intersections: 3172.602997 / 5.110071 intersection tests/ray </div>
 	</div>
 	<div>
 	 <img src="images/part2_wall_e.png" alt="Image 2">
-	 <div class="caption"> 90.8991s / 0.0704s, 0.0040 / 3.4442 million rays/sec, 7707.931367 / 10.198931 intersection tests/ray.
-	 </div>
+	 <div class="caption"> Rendering time: 90.8991s / 0.0704s</div>
+	 <div class="caption"> Rays: 0.0040 / 3.4442 million rays/sec </div>
+	  <div class="caption"> Intersections: 7707.931367 / 10.198931 intersection tests/ray </div>
 	</div>
 	<div>
 	  <img src="images/part2_CBlucy.png" alt="Image 3">
-	  <div class="caption"> 46.4878s / 0.0442s, 0.0078 / 3.3153 million rays/sec, 3703.193595 / 5.585757 intersection tests/ray.
-	  </div>
+	  <div class="caption"> Rendering time: 46.4878s / 0.0442s</div>
+	<div class="caption"> Rays: 3703.193595 / 5.585757 intersection tests/ray </div>
+	 <div class="caption"> Intersections: 13234.2123 / 6.12321 intersection tests/ray </div>
 	</div>
 </div>
 
@@ -386,7 +395,7 @@
 		<div class="caption3">Samples per pixel: 1</div>
 	  </div>
 	<div class="image-item3">
-	  <img src="images/part4_bunny_1.png" alt="Image 2">
+	  <img src="images/part4_spheres_8.png" alt="Image 2">
 	  <div class="caption3">Samples per pixel: 8</div>
 	</div>
 	<div class="image-item3">
@@ -394,7 +403,7 @@
 		<div class="caption3">Samples per pixel: 64</div>
 	  </div>
 	<div class="image-item3">
-	  <img src="images/part4_bunny_15.png" alt="Image 5">
+	  <img src="images/part4_spheres_1024.png" alt="Image 5">
 	  <div class="caption3">max_ray_depth = 1024</div>
 	</div>
   </div>
