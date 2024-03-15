@@ -422,7 +422,16 @@
 	</div>
   </div>
 <h2>Part 5: Adaptive Sampling</h2>
-<!-- Content for Part 5 goes here -->
+<p>Adaptive sampling dynamically adjusts the number of samples taken per pixel based on convergence of the rendered image.
+	If only only one sample is required, a single ray is traced through the center of the pixel. There is no need for adaptive sampling, and we can just
+	generate illumination as is. We set the buffer to be just 1 and then set the pixel as that. Otherwise, we enter the for loop 
+	and iterate through the specified number of samples, by checkin the number of pixels in a batch and if it's not a multiple of it then we are to surmise that
+	it's not in the first batch. In each iteration, a new ray is set and accumulated. We find the mean and variance 
+	of the accumulated samples to estimate the error of the image, and if it falls within the threshold (maxTolerance * mean), then we are done sampling and exit the loop.
+	We then generate the rays and trace them through the scene, taking the average results of all the samples and storing it in a sample buffer. The algorithm helps optimize rendering 
+	efficiency by dynamically adjusting the number of samples and placing them in the buffer, based off of the convergence rate of rendered image. It also greatly reminds of adaptive helm,
+	which is my favorite TFT item.
+</p>
 
 </body>
 </html>
