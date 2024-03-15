@@ -171,7 +171,7 @@
 		thus simulate how light would act with surfaces.
 	</p>
 
-	<div class="image-container">
+	<div class="image-container3">
 		<div>
 			<img src="images/part2_ugly_guy.png" alt="Image 1">
 			<div class="caption">Rendering time: 0.1080s</div>
@@ -187,33 +187,38 @@
 		</div>
   
 <h3>Rendering Experiments</h3>
-<p> Thus, with BVH it is much more efficient as we are reducing the naive approach of ray intersection
-	computations We are able to generate faster images that are still high-quality. 
-</p>
 
 <p>The leftmost number is implemented without BVH and the rightmost number is with BVH acceleration.</p>
 <div class="image-container">
 	<div>
-	  <img src="images/part2_beast.png" alt="Image 1">
-	  <div class="caption"> Rendering time: 19.9849s / 0.0488s
-	  </div>
-	  <div class="caption"> Rays: 0.0174 / 3.1435 million rays/sec </div>
-	  <div class="caption"> Intersections: 3172.602997 / 5.110071 intersection tests/ray </div>
+		<img src="images/part2_beast.png" alt="Image 1">
+		<div class="caption"> Rendering time: 19.9849s / 0.0488s
+		</div>
+		<div class="caption"> Rays: 0.0174 / 3.1435 million rays/sec </div>
+		<div class="caption"> Intersections: 3172.602997 / 5.110071 intersection tests/ray </div>
 	</div>
 	<div>
-	 <img src="images/part2_wall_e.png" alt="Image 2">
-	 <div class="caption"> Rendering time: 90.8991s / 0.0704s</div>
-	 <div class="caption"> Rays: 0.0040 / 3.4442 million rays/sec </div>
-	  <div class="caption"> Intersections: 7707.931367 / 10.198931 intersection tests/ray </div>
+		<img src="images/part2_wall_e.png" alt="Image 2">
+		<div class="caption"> Rendering time: 90.8991s / 0.0704s</div>
+		<div class="caption"> Rays: 0.0040 / 3.4442 million rays/sec </div>
+		<div class="caption"> Intersections: 7707.931367 / 10.198931 intersection tests/ray </div>
 	</div>
 	<div>
-	  <img src="images/part2_CBlucy.png" alt="Image 3">
-	  <div class="caption"> Rendering time: 46.4878s / 0.0442s</div>
-	<div class="caption"> Rays: 3703.193595 / 5.585757 intersection tests/ray </div>
-	 <div class="caption"> Intersections: 13234.2123 / 6.12321 intersection tests/ray </div>
+		<img src="images/part2_CBlucy.png" alt="Image 3">
+		<div class="caption"> Rendering time: 46.4878s / 0.0442s</div>
+		<div class="caption"> Rays: 3703.193595 / 5.585757 intersection tests/ray </div>
+		<div class="caption"> Intersections: 13234.2123 / 6.12321 intersection tests/ray </div>
 	</div>
 </div>
 
+<p> Thus, with BVH it is much more efficient as we are reducing the naive approach of ray intersection
+	computations We are able to generate faster images that are still high-quality, especially those with 
+	many primitives, which are the ones shown above. However, I noticed that with CBsphere, which only has 14
+	primitives, the rendering time did not have that big of a different. It was around the same time which was like 0.300 seconds.
+	A linear scan works fine, since BVH wouldn't be able to cut that much time with those with smaller primitives like that anyways.
+	It was very interesting to see .dae files that had up to like 20,000 primitives be rendered to less than a second due to the 
+	binary k tree.
+</p>
 <h2>Part 3: Direct Illumination</h2>
 <h3>Diffuse BSDF</h3>
 <p>In DiffuseBSDF::f, the function evaluates the diffuse Lambertian BSDF given the outgoing ('wo') and incident light directions ('wi').
@@ -339,35 +344,28 @@
 <p>We compute the radiance that accounts for light interaction, whether through direct
 	or indirect lighting from one or more bounces. In the previous functions, we consider all the possible paths 
 	that light takes going from a light source without reflections. However, now we are considering both direct 
-	and indirect lighting that interact with the surface of the scene. To compute the final radiance, we use 
-	an interesting concept called the "russian roulette" (not by Red Velvet) to determine whether to include
+	and indirect lighting that interact with the surface of the scene. We initialize L_out (illumination output) to be
+	one_bounce_radiance, which is the direct lighting. To compute the final radiance, we use 
+	an interesting concept called the "russian roulette" as it helps in reducing biasing to determine whether to include
 	contributions from indirecting lighting or to terminate recursion early based on probability threshold (0.3). 
 	For some reason, it's much more grainy when I did trial and error and chose a higher threshold (0.4), so I settled with
-	that number. We keep recursing down until we hit a max_depth of 1, and as we're going down each level we're taking the vector of
-	the 'bounceSample' and multiplying it by 'bsdf,' 'pdf,' and etc. We're then adding that weighted sample to the output. I 
-	also divided it by the russian roulette probability. It was very cool to see how my favorite girl group helped with 
+	that number. We keep recursing down and continue casting the new ray until we hit a max_depth of 1, and as we're going down each level we're taking the vector of
+	the 'bounceSample' and multiplying it by 'bsdf,' 'pdf,' world space coordinates, and etc. We're then adding that weighted sample to the output. I 
+	also divided it by the russian roulette probability. It was very cool to see how my favorite girl group (Red Velvet) helped with 
 	global illumination and reflections, leading to more realistic and visually appealing renders.
 </p>
 
 <h3>Indirect, Direct Illumination Comparison: 'CBsphere.dae'</h3>
 <div class="image-container3">
 	<div class="image-item3">
-		<img src="images/part4_bunny_0.png" alt="Image 1">
-		<div class="caption3">Indirect Illumination</div>
-	  </div>
-	<div class="image-item3">
-	  <img src="images/part4_bunny_1.png" alt="Image 2">
-	  <div class="caption3">max_ray_depth = 1</div>
+		<img src="images/part4_direct.png" alt="Image 2">
+		<div class="caption3">Direct is when there is one bounce.</div>
 	</div>
 	<div class="image-item3">
-		<img src="images/part4_bunny_5.png" alt="Image 4">
-		<div class="caption3">Direct Illumination</div>
+		<img src="images/part4_indirect_light.png" alt="Image 1">
+		<div class="caption3">Indirect is when there is greater than one. </div>
 	  </div>
-	<div class="image-item3">
-	  <img src="images/part4_bunny_15.png" alt="Image 5">
-	  <div class="caption3">max_ray_depth = 15</div>
-	</div>
-  </div>
+</div>
 <h3>Max-ray-depth Comparison: 'bunny.dae'</h3>
 <p>This is with 64 samples and 32 light rays, and notice how the room is increasingly brighter with a greater max ray depth.</p>
 <div class="image-container3">
