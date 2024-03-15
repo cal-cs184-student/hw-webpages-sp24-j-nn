@@ -241,14 +241,15 @@
 	</div>
   </div>
 
-<h3>Light important sampling</h3>
-<p>Instead of sampling from the light sources directly, we are doing so uniformly in a hemisphere. In PathTracer::estimate_direct_lighting_importance, 
-	we iterate over each ligh source in the scene and sample points on the light surface, taking into account emitted radiance, distance attenuation,
-	and PDF of sampling. For each sampled point on a light source, a shadow ray is cast towards the intersection point and if no intersection occurs along
-	the ray then the radiance contribution is accumulated. This greatly reduces the noise and improves converging compared to uniform hemisphere sampling. Below
-	are images to highlight key differences.
-</p>
-
+  
+  <h3>Light important sampling</h3>
+  <p>Instead of sampling from the light sources directly, we are doing so uniformly in a hemisphere. In PathTracer::estimate_direct_lighting_importance, 
+	  we iterate over each ligh source in the scene and sample points on the light surface, taking into account emitted radiance, distance attenuation,
+	  and PDF of sampling. For each sampled point on a light source, a shadow ray is cast towards the intersection point and if no intersection occurs along
+	  the ray then the radiance contribution is accumulated. This greatly reduces the noise and improves converging compared to uniform hemisphere sampling.
+	</p>
+	
+  <p>Below are light important sampling images.</p>
 
 <div class="image-container3">
 	<div class="image-item3">
@@ -284,7 +285,7 @@
 	</div>
 </div>
 
-<p>Below, we have the different noise levels in soft shadows in CBbunny.dae.</p>
+<p>Below, we have the different noise levels in soft shadows in CBbunny.dae. This is done by returning one_bounce_radiance in 'PathTracer::est_radiance_global_illumination.'</p>
 
 <div class="image-container3">
 	<div class="image-item3">
@@ -323,9 +324,44 @@
 	  <div class="caption3">Light rays: 64</div>
 	</div>
   </div>
-<h2>Part 4: Global Illumination</h2>
-<!-- Content for Part 4 goes here -->
 
+<h2>Part 4: Global Illumination</h2>
+
+<p>We compute the radiance that accounts for light interaction, whether through direct
+	or indirect lighting from one or more bounces. In the previous functions, we consider all the possible paths 
+	that light takes going from a light source without reflections. However, now we are considering both direct 
+	and indirect lighting that interact with the surface of the scene. To compute the final radiance, we use 
+	an interesting concept called the "russian roulette" (not by Red Velvet) to determine whether to include
+	contributions from indirecting lighting or to terminate recursion early based on probability threshold (0.3). 
+	For some reason, it's much more grainy when I did trial and error and chose a higher threshold (0.4), so I settled with
+	that number. We keep recursing down until we hit a max_depth of 1, and as we're going down each level we're taking the vector of
+	the 'bounceSample' and multiplying it by 'bsdf,' 'pdf,' and etc. We're then adding that weighted sample to the output. I 
+	also divided it by the russian roulette probability. It was very cool to see how my favorite girl group helped with 
+	global illumination and reflections, leading to more realistic and visually appealing renders.
+</p>
+
+<h3>Indirect, Direct Illumination Comparison: 'CBsphere.dae'</h3>
+<h3>Max-ray-depth Comparison: 'bunny.dae'</h3>
+<p>This is with 64 samples and 32 light rays, and notice how the room is increasingly brighter with a greater max ray depth.</p>
+<div class="image-container3">
+	<div class="image-item3">
+		<img src="images/part4_spheres_1.png" alt="Image 1">
+		<div class="caption3">max_ray_depth = 0</div>
+	  </div>
+	<div class="image-item3">
+	  <img src="images/part4_bunny_1.png" alt="Image 2">
+	  <div class="caption3">max_ray_depth = 1</div>
+	</div>
+	<div class="image-item3">
+		<img src="images/part4_bunny_5.png" alt="Image 4">
+		<div class="caption3">max_ray_depth = 5</div>
+	  </div>
+	<div class="image-item3">
+	  <img src="images/part4_bunny_15.png" alt="Image 5">
+	  <div class="caption3">max_ray_depth = 15</div>
+	</div>
+  </div>
+<h3>Sample-per-pixel Comparison: 'bunny.dae'</h3>
 <h2>Part 5: Adaptive Sampling</h2>
 <!-- Content for Part 5 goes here -->
 
