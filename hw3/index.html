@@ -370,25 +370,28 @@
 		<div class="caption3">Direct is when there is one bounce.</div>
 	</div>
 	<div class="image-item3">
-		<img src="images/part4_indirect_light.png" alt="Image 1">
+		<img src="images/part4_direct.png" alt="Image 1">
 		<div class="caption3">Indirect is when there is greater than one. </div>
 	  </div>
 </div>
 
 <h3>Max-ray-depth Comparison: 'bunny.dae'</h3>
-<p>This is with 64 samples and 32 light rays, and notice how the room is increasingly brighter with a greater max ray depth.</p>
+<p>This is with 64 samples and 32 light rays, and notice how the room is increasingly brighter with a greater max ray depth. There 
+	is a great jump in the color form a ray depth of 1, as that is just direct lighting and anything greater than that is indirect lighting.
+	You can see that the light is more scattered in ray depths of 1, 5, and 10.
+</p>
 <div class="image-container3">
 	<div class="image-item3">
 		<img src="images/part4_bunny_0.png" alt="Image 1">
 		<div class="caption3">max_ray_depth = 0</div>
 	  </div>
 	<div class="image-item3">
-	  <img src="images/part4_bunny_1.png" alt="Image 2">
+	  <img src="images/part4_bunny_5.png" alt="Image 2">
 	  <div class="caption3">max_ray_depth = 1</div>
 	</div>
 	<div class="image-item3">
-		<img src="images/part4_bunny_5.png" alt="Image 4">
-		<div class="caption3">max_ray_depth = 5</div>
+		<img src="images/part4_bunny_8.png" alt="Image 4">
+		<div class="caption3">max_ray_depth = 8</div>
 	  </div>
 	<div class="image-item3">
 	  <img src="images/part4_bunny_15.png" alt="Image 5">
@@ -396,6 +399,10 @@
 	</div>
   </div>
 <h3>Sample-per-pixel Comparison: 'sphere.dae'</h3>
+<p> Look at how the spheres for a larger samples per pixel size (64 and 1024) are so satisfying to look at. However, the 1024 
+	size took around 15 or 20 minutes for it fully render and the 64 size one also took a very long time. The tradeoff for time
+	for a smoother look might be annoying, but smaller sample sizes (less than 10) have such a grainy look to them.
+</p>
 <div class="image-container3">
 	<div class="image-item3">
 		<img src="images/part4_spheres_1.png" alt="Image 1">
@@ -411,7 +418,7 @@
 	  </div>
 	<div class="image-item3">
 	  <img src="images/part4_spheres_1024.png" alt="Image 5">
-	  <div class="caption3">max_ray_depth = 1024</div>
+	  <div class="caption3">Samples per pixel = 1024</div>
 	</div>
   </div>
 <h2>Part 5: Adaptive Sampling</h2>
